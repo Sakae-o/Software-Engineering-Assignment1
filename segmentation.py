@@ -6,7 +6,7 @@ def segment(root):
     '''
     Break each row of the text into a list of individual words
     without '(', ')', ';', ';', '{' and '}',
-    then merge those lists into one list
+    then merge those lists into one list which will be returned.
     '''
     f = open(root, "r")
     lines = f.readlines()
