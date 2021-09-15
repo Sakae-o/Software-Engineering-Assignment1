@@ -1,15 +1,11 @@
 import os
+import segmentation
 import keywords_num
+import count_of_switch
+
+
 
 root = "test.cpp"
-
 f = open(root,"r")
-lines = f.readlines()
-
-print("After segmentation:")
-print("total num:", keywords_num.compute_num(lines))
-
-
-
-
-
+words = segmentation.segment(root)
+print("total num:",keywords_num.compute_num(words))
