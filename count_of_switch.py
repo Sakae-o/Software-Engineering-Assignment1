@@ -10,6 +10,9 @@ def count(words):
     print("switch num:", num[25])
 
     print("case num:", end=" ")
+    if (num[25] == 0):
+        print("0", end=" ")
+        return
     case_num = 0
     for i in range(words.index("switch") + 1, words.__len__()):
         if (words[i] == "switch" or i == words.__len__() - 1):
