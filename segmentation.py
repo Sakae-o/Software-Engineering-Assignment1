@@ -63,7 +63,7 @@ def delete_annotation_1(list):
 
 def delete_annotation_2(list):
     '''
-    Delete each set of the marks "/*" and "*/", which has been
+    Delete the each set of the marks "/*" and "*/", which has been
     replaced with "$*" and "*$", and all the words between them in each set.
     '''
     flag = 0
@@ -84,4 +84,3 @@ def delete_annotation_2(list):
         i += 1
 
     return new_list
-
