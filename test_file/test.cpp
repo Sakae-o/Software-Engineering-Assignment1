@@ -11,7 +11,14 @@ int main() {
         case 0:
             break;
         case 1:
-            break;
+            if(iswitch && jcase){
+            	;
+			}
+			else if(iswitch){
+			;}
+			else if(jcase){}
+			if(iswitch == 10){;}
+			else{}
         case 2:
             printf("oh case oh");
         default:
@@ -27,7 +34,6 @@ int main() {
     }
 
 
-	
 	if(i<0) {
 		if(i<-1) {}
 		else printf("oh if else oh");
@@ -46,7 +52,7 @@ int main() {
 		if (i <7){
 			i=9;
 		}
-		else if(i <4) {	string a = "oh if else oh", b = "oh if else oh";}
+		else if(i <4) {	string a = "oh if else oh", b = "oh if else";}
 		else i=10;
 	}
 	/*
@@ -56,5 +62,15 @@ int main() {
 	else{	//oh if else oh
 		;
 	}
+	/*if**/
+	
+	for(int i = 0; i < 50; i++){
+		printf("%d\n", i);
+		if((i + 1) % 10 == 0){
+			i++;
+		}		
+	}
+	
+	
 	return 0;
 }
