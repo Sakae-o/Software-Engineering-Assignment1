@@ -48,7 +48,7 @@ int main() {
 	}
 	iswitch = jcase;  /*
 	ohh switch case */
-	if(i > 8){
+	/*switch*/if(i > 8){  /*oh case*/
 		if (i <7){
 			i=9;
 		}
@@ -59,7 +59,7 @@ int main() {
 	oh if else oh
 	oh if else oh
 	*/
-	else{	//oh if else oh
+	/*case*/ else{	/*oh if else oh*/
 		;
 	}
 	/*if**/
@@ -70,7 +70,6 @@ int main() {
 			i++;
 		}		
 	}
-	
-	
+		
 	return 0;
 }
