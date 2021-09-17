@@ -16,12 +16,12 @@ total_num = keywords_num.compute_num(words)
 num_i_e = cnt_ie.count_if_else(words)
 num_i_e_e = cnt_ie.count_else(words) - num_i_e
 
-if(level >= 1):
+if (level >= 1):
     print("total num:", total_num)
-if(level >= 2):
+if (level >= 2):
     cnt_s.count(words)
 if (level >= 3):
     print("\nif-else num:", num_i_e)
-if(level == 4):
+if (level == 4):
     print("if-elseif-else num:", num_i_e_e)
 
