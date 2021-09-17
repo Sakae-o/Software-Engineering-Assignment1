@@ -13,27 +13,28 @@ def segment(root):
     result = []
     is_annotation = 0
     for line in lines:
+        # Replace some words with special marks. #
+        # Then split the words in the line into a list. #
         line = line.translate({ord(i): " " for i in "();:,"})
         line = line.translate({ord("\""): " @ "})
         line = line.translate({ord("/"): " $ "})
+        line = line.translate({ord("*"): " * "})
         line_split = line.split()
 
-        if (is_annotation == 0):
-            line_split = delete_annotation(line_split)
-            line_split = delete_strings(line_split)
-            is_annotation = is_annotation_start(line_split)
-            result.extend(line_split)
-        elif (is_annotation == 1):
-            if (is_annotation_end(line_split) == 1):
-                is_annotation = 0
-                result.extend(line_split)
+        line_split = delete_annotation_1(line_split)
+        line_split = delete_strings(line_split)
+        result.extend(line_split)
 
+    result = delete_annotation_2(result)
     return result
 
 
 def delete_strings(list):
-    ''' Delete the tow quotation marks and all the words between them. '''
-    if (list.count("@") == 0 or list.count("@") == 1):
+    '''
+    Delete the two quotation marks, which is replaced
+    with "@",  and all the words between them.
+    '''
+    if (list.count("@") <= 1):
         return list
     flag = 0
     new_list = []
@@ -49,37 +50,37 @@ def delete_strings(list):
     return new_list
 
 
-def delete_annotation(list):
-    ''' Delete the mark "//" and all the words after it in a row. '''
+def delete_annotation_1(list):
+    '''
+    Delete the mark "//" , which is replaced with double "$",
+    and all the words after it in a row.
+    '''
     for i in range( list.__len__() - 1):
         if (list[i] == "$" and list[i+1] == "$"):
             return list[:i]
     return list
 
 
-def is_annotation_start(line):
+def delete_annotation_2(list):
     '''
-    Judge whether the start flag of annotation exists in this row.
-    Incidentally delete the flag and all the words after it.
+    Delete the each set of the marks "/*" and "*/", which is
+    replaced with "$*" and "*$", and all the words between each set.
     '''
-    if (line.count("$") == 0):
-        return 0
-    for i in range(line.__len__() - 1):
-        if (line[i] == "$" and line[i+1] == "*"):
-           del line[i:]
-           return 1
-    return 0
+    flag = 0
+    new_list = []
 
+    i = 0
+    while (i < list.__len__()):
+        if (flag == 0):
+            if (list[i] == "$" and list[i+1] == "*"):
+                flag = 1
+                i += 1
+            else:
+                new_list.append(list[i])
+        elif (flag == 1):
+            if (list[i] == "*" and list[i+1] == "$"):
+                flag = 0
+                i += 1
+        i += 1
 
-def is_annotation_end(line):
-    '''
-    Judge whether the end flag of annotation exists in this row.
-    Incidentally delete the flag and all the words before it.
-    '''
-    if (line.count("$") == 0):
-        return 0
-    for i in range(line.__len__() - 1):
-        if (line[i] == "*" and line[i+1] == "$"):
-            del line[:i+2]
-            return 1
-    return 0
+    return new_list
