@@ -31,7 +31,7 @@ def segment(root):
 
 def delete_strings(list):
     '''
-    Delete the two quotation marks, which is replaced
+    Delete the two quotation marks, which has been replaced
     with "@",  and all the words between them.
     '''
     if (list.count("@") <= 1):
@@ -52,7 +52,7 @@ def delete_strings(list):
 
 def delete_annotation_1(list):
     '''
-    Delete the mark "//" , which is replaced with double "$",
+    Delete the mark "//" , which has been replaced with double "$",
     and all the words after it in a row.
     '''
     for i in range( list.__len__() - 1):
@@ -63,8 +63,8 @@ def delete_annotation_1(list):
 
 def delete_annotation_2(list):
     '''
-    Delete the each set of the marks "/*" and "*/", which is
-    replaced with "$*" and "*$", and all the words between each set.
+    Delete the each set of the marks "/*" and "*/", which has been
+    replaced with "$*" and "*$", and all the words between them in each set.
     '''
     flag = 0
     new_list = []
@@ -84,3 +84,4 @@ def delete_annotation_2(list):
         i += 1
 
     return new_list
+
