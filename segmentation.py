@@ -5,7 +5,7 @@ import os
 def segment(root):
     '''
     Break each row of the text into a list of individual words
-    without ' ', '(', ')', ':' , ',' and ';',
+    without ' ', '(', ')', ':' , and ',',
     then merge those lists into one list which will be returned.
     '''
     f = open(root, "r")
@@ -15,10 +15,13 @@ def segment(root):
     for line in lines:
         # Replace some words with special marks. #
         # Then split the words in the line into a list. #
-        line = line.translate({ord(i): " " for i in "();:,"})
+        line = line.translate({ord(i): " " for i in "():,"})
         line = line.translate({ord("\""): " @ "})
         line = line.translate({ord("/"): " $ "})
         line = line.translate({ord("*"): " * "})
+        line = line.translate({ord(";"): " ; "})
+        line = line.translate({ord("{"): " { "})
+        line = line.translate({ord("}"): " }"})
         line_split = line.split()
 
         line_split = delete_annotation_1(line_split)
@@ -32,7 +35,7 @@ def segment(root):
 def delete_strings(list):
     '''
     Delete the two quotation marks, which has been replaced
-    with "@",  and all the words between them.
+    with "@",  and delete all the words between them.
     '''
     if (list.count("@") <= 1):
         return list
@@ -53,7 +56,7 @@ def delete_strings(list):
 def delete_annotation_1(list):
     '''
     Delete the mark "//" , which has been replaced with double "$",
-    and all the words after it in a row.
+    and delete all the words after it in a row.
     '''
     for i in range( list.__len__() - 1):
         if (list[i] == "$" and list[i+1] == "$"):
@@ -63,11 +66,11 @@ def delete_annotation_1(list):
 
 def delete_annotation_2(list):
     '''
-    Delete the each set of the marks "/*" and "*/", which has been
-    replaced with "$*" and "*$", and all the words between them in each set.
+    Delete each set of the marks "/*" and "*/", which has been
+    replaced with "$*" and "*$", and delete all the words between them in each set.
     '''
     flag = 0
-    new_list = []
+    result = []
 
     i = 0
     while (i < list.__len__()):
@@ -76,11 +79,11 @@ def delete_annotation_2(list):
                 flag = 1
                 i += 1
             else:
-                new_list.append(list[i])
+                result.append(list[i])
         elif (flag == 1):
             if (list[i] == "*" and list[i+1] == "$"):
                 flag = 0
                 i += 1
         i += 1
 
-    return new_list
+    return result
