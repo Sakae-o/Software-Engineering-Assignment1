@@ -4,8 +4,8 @@ using namespace std;
 
 int main() {
 	int i = 0;
-	int iswitch = 0;
-	int jcase = 0;
+	int iswitch = 0, iff = 1;
+	int jcase = 0, elsel = 2;
 	
 	switch(iswitch){		//ooo switch case ooo
         case 0:
@@ -70,6 +70,19 @@ int main() {
 			i++;
 		}		
 	}
-		
+	
+	if(iff > elsel){
+		iff++;
+	}
+	else;
+	if(iff > 15){
+		exit(0);
+	}
+	else if(iff){}
+	else;
+	if(iff){}
+	
+	
+	
 	return 0;
 }
