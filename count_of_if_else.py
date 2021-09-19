@@ -7,15 +7,20 @@ def count_if_else(words):
     stack = deque()
     result = 0
 
-    for i in range(words.index("if"), words.__len__()):
+    for i in range(
+            words.__len__()):
         if (words[i] == "if" and words[i-1] != "else"):
             stack.append(1)
         if (stack.__len__() != 0):
-            if (words[i] == "else{" or words[i] == "else{}" or (words[i] == "else" and words[i+1] != "if")):
-                stack.pop()
-                result += 1
-            elif (words[i] == "else" and words[i+1] == "if"):
-                stack.pop()
+            if (words[i] == "else" and words[i+1] != "if"):
+                if (stack[-1] == 1):
+                    result += 1
+                    stack.pop()
+                elif (stack[-1] == 2):
+                    stack.pop()
+                    stack.pop()
+            elif (words[i] == "else" and words[i+1] == "if" and stack[-1] == 1):
+                stack.append(2)
     return result
 
 
@@ -26,7 +31,6 @@ def count_else(words):
     '''
     result = 0
     for i in range(words.__len__()):
-        if ((words[i] == "else" and words[i+1] != "if")
-            or (words[i] == "else{") or (words[i] == "else{}")):
+        if ((words[i] == "else" and words[i+1] != "if")):
             result += 1
     return result
